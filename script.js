@@ -1,6 +1,16 @@
-async function fetchData() {
-    const response = await fetch("https://api.waqi.info/feed/nagpur/?token=e53ae75c23b11dbb01365576f772233cfd9e6442")
+async function fetchData(position) {
+
+    const lat = position.coords.latitude;
+    const long = position.coords.longitude;
+    const resultDiv = document.getElementById("result");
+    resultDiv.textContent = `Latitude: ${lat}, Longitude: ${long}`;
+
+    const url = `https://api.waqi.info/feed/here?token=e53ae75c23b11dbb01365576f772233cfd9e6442`;
+    console.log(url)
+
+    const response = await fetch(url)
     const record = await response.json();
+    console.log(record)
 
     document.getElementById("date-text").innerHTML = record.data['time']['s'].split(" ")[0];
     document.getElementById("city-text").innerHTML = record.data['city']['name'].split(",")[1];
@@ -35,4 +45,24 @@ async function fetchData() {
 
 }
 
-fetchData();
+// Function to handle errors when retrieving location
+function errorCallback(error) {
+    const resultDiv = document.getElementById("result");
+    if (error.code === error.PERMISSION_DENIED) {
+        resultDiv.textContent = "Geolocation permission denied. Please allow access in your browser settings.";
+        // You can also provide instructions for enabling geolocation in the browser settings.
+        const instructionsDiv = document.getElementById("instructions");
+        instructionsDiv.textContent = "To enable geolocation access, go to your browser settings, find 'Site Settings' or 'Privacy and Security', and allow location access for this extension.";
+    } else {
+        resultDiv.textContent = "Error getting location: " + error.message;
+    }
+}
+
+// Check if geolocation is available in the browser
+if ("geolocation" in navigator) {
+    // Request the user's location
+    navigator.geolocation.getCurrentPosition(fetchData, errorCallback);
+} else {
+    const resultDiv = document.getElementById("result");
+    resultDiv.textContent = "Geolocation is not available in this browser.";
+}
