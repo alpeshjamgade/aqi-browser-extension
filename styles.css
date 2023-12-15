@@ -1,0 +1,54 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    width: 400px;
+    text-align: center;
+}
+
+.info {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.top-line {
+    display: flex;
+    justify-content: space-between;
+}
+
+p {
+    margin: 10px 0;
+    color: #333333;
+}
+
+#location,
+#date,
+#aqi {
+    font-weight: bold;
+}
+
+#city {
+    margin-left: 5px;
+}
+
+#date-text {
+    margin-left: 5px;
+}
+
+#aqi-label {
+    font-weight: bold;
+    color: #3498db;
+}
+
+#aqi {
+    /*font-size: 1.5em;*/
+    color: black; /* Hardcoded AQI text color to black */
+    margin: 0 auto; /* Center the AQI text horizontally */
+}
+

@@ -1,0 +1,11 @@
+{
+  "name": "AQI Stats",
+  "version": "1.0",
+  "description": "Air Quality Index Report",
+  "manifest_version": 3,
+  "author": "Alpesh Jamgade",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "AQI Stats"
+  }
+}
